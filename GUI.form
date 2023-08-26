@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI">
+  <grid id="27dc6" binding="panelJuego" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="509"/>
+    </constraints>
+    <properties>
+      <background color="-15974129"/>
+      <preferredSize width="600" height="600"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="23cc2" class="javax.swing.JLabel" binding="JUEGOLabel" default-binding="true">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="500" height="100"/>
+            <maximum-size width="500" height="500"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16747148"/>
+          <enabled value="true"/>
+          <font name="Engravers MT" size="72" style="1"/>
+          <foreground color="-66049"/>
+          <horizontalAlignment value="0"/>
+          <text value="JUEGO"/>
+        </properties>
+      </component>
+      <component id="aeb7f" class="javax.swing.JButton" binding="JUGARButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="100"/>
+            <maximum-size width="150" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11460781"/>
+          <enabled value="false"/>
+          <font name="MingLiU_HKSCS-ExtB" size="24" style="0"/>
+          <foreground color="-66049"/>
+          <horizontalTextPosition value="0"/>
+          <text value="JUGAR"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
