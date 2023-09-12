@@ -32,7 +32,7 @@ public class Juego {
             int mes = numAleatorio(1,12);
             int anio = numAleatorio(yn - 300, yn);
             int dia = numAleatorio(1,cantDiasMes(mes,anio));
-            LocalDate nacimiento = LocalDate.of(dia, mes, anio);
+            LocalDate nacimiento = LocalDate.of(anio, mes, dia);
             int velocidad = numAleatorio(1, 10);
             int destreza = numAleatorio(1, 5);
             int fuerza = numAleatorio(1, 10);
@@ -88,10 +88,19 @@ public class Juego {
     public int cantDiasMes(int mes, int anio){
         int cant = 0;
         switch (mes){
-            case 1,3,5,7,8,10,12:
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
                 cant = 31;
                 break;
-            case 4,6,9,11:
+            case 4:
+            case 6:
+            case 9:
+            case 11:
                 cant = 30;
                 break;
             case 2:
