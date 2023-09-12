@@ -1,6 +1,8 @@
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Juego {
@@ -16,8 +18,35 @@ public class Juego {
     }
 
     public void generarPersonajesAleatorios() {
-        // Generar los 6 personajes aleatorios
-        // Agregarlos a las listas de jugadores
+        for (int i = 0; i < 6; i++){
+            RandomEnumGenerator n = new RandomEnumGenerator(Nombre.class);
+            Nombre nombreR = (Nombre) n.randomEnum();
+            String nombre = nombreR.name();
+            RandomEnumGenerator r = new RandomEnumGenerator(Raza.class);
+            Raza raza = (Raza) r.randomEnum();
+            RandomEnumGenerator a = new RandomEnumGenerator(Apodo.class);
+            Apodo apodoR = (Apodo) a.randomEnum();
+            String apodo = apodoR.name();
+            LocalDate dt = LocalDate.now();
+            int yn = dt.getYear();
+            int mes = numAleatorio(1,12);
+            int anio = numAleatorio(yn - 300, yn);
+            int dia = numAleatorio(1,cantDiasMes(mes,anio));
+            LocalDate nacimiento = LocalDate.of(dia, mes, anio);
+            int velocidad = numAleatorio(1, 10);
+            int destreza = numAleatorio(1, 5);
+            int fuerza = numAleatorio(1, 10);
+            int nivel = numAleatorio(1, 10);
+            int armadura = numAleatorio(1, 10);
+
+            Personaje p = new Personaje(nombre, raza, apodo, nacimiento, velocidad, destreza, fuerza, nivel, armadura);
+            if(i % 2 == 0){
+                Jugador1.add(p);
+            }
+            else {
+                Jugador2.add(p);
+            }
+        }
     }
 
     public void iniciarPartida() {
@@ -51,22 +80,54 @@ public class Juego {
         }
     }
 
-    public void mostrarMenu() {
+    public static int numAleatorio(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min + 1) + min;
+    }
+
+    public int cantDiasMes(int mes, int anio){
+        int cant = 0;
+        switch (mes){
+            case 1,3,5,7,8,10,12:
+                cant = 31;
+                break;
+            case 4,6,9,11:
+                cant = 30;
+                break;
+            case 2:
+                if ((anio % 4 == 0) && ((anio % 100 != 0) || (anio % 400 == 0))){
+                    cant = 29;
+                    break;
+                }
+                else {
+                    cant = 28;
+                    break;
+                }
+            default:
+                throw new IllegalStateException("Unexpected value: " + mes);
+        }
+        return cant;
+    }
+
+    public void mostrarMenu(){
+        boolean salir = false;
         Scanner scanner = new Scanner(System.in);
 
-        boolean salir = false;
-
-        while (!salir) {
-            System.out.println("----- Menú del Juego de Cartas -----");
-            System.out.println("1. Iniciar partida (generar personajes aleatoriamente)");
-            System.out.println("2. Iniciar partida (ingresar personajes a mano)");
-            System.out.println("3. Leer logs de partidas jugadas");
-            System.out.println("4. Borrar archivo de logs");
-            System.out.println("5. Salir");
-            System.out.print("Ingrese la opción deseada: ");
-
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("-                                                            -");
+        System.out.println("-                       JUEGO DE CARTAS                      -");
+        System.out.println("-                                                            -");
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("------------------ Menú del Juego de Cartas ------------------");
+        System.out.println("-  1. Iniciar partida (generar personajes aleatoriamente)    -");
+        System.out.println("-  2. Iniciar partida (ingresar personajes a mano)           -");
+        System.out.println("-  3. Leer logs de partidas jugadas                          -");
+        System.out.println("-  4. Borrar archivo de logs                                 -");
+        System.out.println("-  5. Salir                                                  -");
+        System.out.println("--------------------------------------------------------------");
+        System.out.print  ("Ingrese la opción deseada: ");
+        while (!salir){
             int opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea después de ingresar la opción
 
             switch (opcion) {
                 case 1:
@@ -84,19 +145,13 @@ public class Juego {
                     borrarArchivoLogs();
                     break;
                 case 5:
-                    salir = true;
-                    break;
+                    System.exit(0);
                 default:
-                    System.out.println("Opción inválida. Por favor, ingrese una opción válida.");
+                    salir = true;
             }
         }
 
         guardarLogsEnArchivo();
-    }
-
-    public static void main(String[] args) {
-        Juego juego = new Juego();
-        juego.mostrarMenu();
     }
 }
 
