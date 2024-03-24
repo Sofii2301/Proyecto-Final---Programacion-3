@@ -13,7 +13,7 @@ class Personaje {
     private int fuerza;
     private int nivel;
     private int armadura;
-    private int salud;
+    private double salud;
 
     public Personaje(String nombre, Raza raza, String apodo, LocalDate nacimiento, int velocidad, int destreza, int fuerza, int nivel, int armadura) {
         this.nombre = nombre;
@@ -29,18 +29,63 @@ class Personaje {
         this.salud = 100;
     }
 
+    //getters
+    public String getNombre(){
+        return nombre;
+    }
+    public Raza getRaza(){
+        return raza;
+    }
+    public int getDestreza(){
+        return destreza;
+    }
+    public int getVelocidad(){
+        return velocidad;
+    }
+    public int getNivel(){
+        return nivel;
+    }
+    public int getFuerza(){
+        return fuerza;
+    }
+    public int getArmadura(){
+        return armadura;
+    }
+    public double getSalud(){
+        return salud;
+    }
+    
+    //Setter
+    public void setSalud(double s){
+        salud = s;
+    }
+
     public boolean estaVivo() {
         return salud > 0;
     }
 
-    // Implementar métodos de ataque y defensa
-
-
+    /* 
     @Override
     public String toString() {
         return "Personaje: " + nombre +
                 ", Raza: " + raza +
                 ", Apodo: " + apodo +
+                ", Salud: " + salud;
+    }
+    */
+
+    @Override
+    public String toString(){
+        return "Personaje: " + nombre +
+                ", Raza: " + raza +
+                ", Apodo: " + apodo +
+                ", Nacimiento: " + nacimiento +
+                ", Edad: " + edad +
+                ", velocidad: " + velocidad +
+                ", destreza: " + destreza +
+                ", fuerza: " + fuerza +
+                ", nivel: " + nivel +
+                ", armadura: " + armadura +
                 ", Salud: " + salud;
     }
 }
