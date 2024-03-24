@@ -1,9 +1,12 @@
 import java.io.*;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Juego {
 
@@ -17,25 +20,28 @@ public class Juego {
         log = new ArrayList<>();
     }
 
-    public void printPersonajesLista(){
-        System.out.println(Jugador1);
-        System.out.println(Jugador2);
-    }
-
+    // Define conjuntos para nombres y apodos
+    Set<String> nombresUtilizados = new HashSet<>();
+    Set<String> apodosUtilizados = new HashSet<>();
     Scanner s = new Scanner(System.in);
+    Boolean continuarJugando = true;
 
     public void generarPersonajesAleatorios() {
         List<Personaje> personajes = new ArrayList<Personaje>();
-        
         for (int i = 0; i < 6; i++){
-            RandomEnumGenerator n = new RandomEnumGenerator(Nombre.class);
-            Nombre nombreR = (Nombre) n.randomEnum();
-            String nombre = nombreR.name();
+            //Para que nombres y apodos no se repitan
+            String nombre;
+            do {
+                nombre = generarNombreAleatorio();
+            } while (nombresUtilizados.contains(nombre));
+            nombresUtilizados.add(nombre);
+            String apodo;
+            do {
+                apodo = generarApodoAleatorio();
+            } while (apodosUtilizados.contains(apodo));
+            apodosUtilizados.add(apodo);
             RandomEnumGenerator r = new RandomEnumGenerator(Raza.class);
             Raza raza = (Raza) r.randomEnum();
-            RandomEnumGenerator a = new RandomEnumGenerator(Apodo.class);
-            Apodo apodoR = (Apodo) a.randomEnum();
-            String apodo = apodoR.name();
             LocalDate dt = LocalDate.now();
             int yn = dt.getYear();
             int mes = numAleatorio(1,12);
@@ -53,14 +59,30 @@ public class Juego {
             personajes.add(p);
         }
         //System.out.println(personajes);
+        
         asignarPersonajes(personajes);
     }
 
+    private String generarNombreAleatorio() {
+        RandomEnumGenerator n = new RandomEnumGenerator(Nombre.class);
+        Nombre nombreR = (Nombre) n.randomEnum();
+        String nombre = nombreR.name();
+        return nombre;
+    }
+
+    private String generarApodoAleatorio() {
+        RandomEnumGenerator a = new RandomEnumGenerator(Apodo.class);
+        Apodo apodoR = (Apodo) a.randomEnum();
+        String apodo = apodoR.name();
+        return apodo;
+    }
+
     public void ingresarPersonajesAMano() {
-        System.out.println("Debe ingresar los datos de 3 personajes para cada jugador, ingrese 's' (salir) para volver al menu: ");
+        //El usuario tiene la opcion de volver al menu principal
+        System.out.println("Debe ingresar los datos de 3 personajes para cada jugador, ingrese 's' (salir) para volver al menu o presione enter para ingresar los datos: ");
         String salir = s.nextLine();
         List<Personaje> personajes = new ArrayList<Personaje>();
-        if (salir == "s" || salir == "S"){
+        if (salir.equalsIgnoreCase("s")){
             mostrarMenu();
         } else {
             for (int i = 0; i < 6; i++){
@@ -91,92 +113,114 @@ public class Juego {
     }
 
     public Personaje leerDatosPersonaje(){
-        System.out.print("Nombre: ");
-            String nombre = s.nextLine();
+        //Para que no se repitan nombres ni apodos
+        String nombre;
+        do {
+            System.out.print("Nombre: ");
+            nombre = s.nextLine();
+            if (nombresUtilizados.contains(nombre)) {
+                System.out.println("¡Este nombre ya ha sido utilizado! Por favor, ingrese otro.");
+            }
+        } while (nombresUtilizados.contains(nombre));
+        nombresUtilizados.add(nombre);
+
+        String apodo;
+        do {
             System.out.print("Apodo: ");
-            String apodo = s.nextLine();
+            apodo = s.nextLine();
+            if (apodosUtilizados.contains(apodo)) {
+                System.out.println("¡Este apodo ya ha sido utilizado! Por favor, ingrese otro.");
+            }
+        } while (apodosUtilizados.contains(apodo));
+        apodosUtilizados.add(apodo);
 
-            boolean salir = false;
-            Raza raza = Raza.HUMANO;
-            while(!salir){
-                System.out.print("Raza (Humano (H), Orco (O), Elfo (E)): ");
-                String razaInput = s.nextLine();
-                razaInput.toUpperCase();
+        boolean salir = false;
+        Raza raza = Raza.HUMANO;
+        while(!salir){
+            System.out.print("Raza (Humano (H), Orco (O), Elfo (E)): ");
+            String razaInput = s.nextLine();
                 
-                switch(razaInput){
-                    case "H":
-                        raza = Raza.HUMANO;
-                        salir = true;
-                        break;
-                    case "O":
-                        raza = Raza.ORCO;
-                        salir = true;
-                        break;
-                    case "E":
-                        raza = Raza.ELFO;
-                        salir = true;
-                        break;
-                }
-            }
-            LocalDate fechaActual = LocalDate.now();
-            System.out.print("Fecha de nacimiento");
-            int mes, anio, dia;
-            while (true){
-                System.out.print("Anio: ");
-                anio = s.nextInt();
-                if (anio < fechaActual.getYear()-300){
-                    System.out.println("El personaje no puede tener mas de 300 anios.");
-                    System.out.println("Ingrese un anio mayor.");
-                } else
+            switch(razaInput.toUpperCase()){
+                case "H":
+                    raza = Raza.HUMANO;
+                    salir = true;
+                    break;
+                case "O":
+                    raza = Raza.ORCO;
+                    salir = true;
+                    break;
+                case "E":
+                    raza = Raza.ELFO;
+                    salir = true;
                     break;
             }
-            while (true){
-                System.out.print("Mes (1-12): ");
-                mes = s.nextInt();
-                if (mes > 12){
-                    System.out.println("Ingrese un mes valido (<12).");
-                } else
-                    break;
-            }
-            while (true){
-                System.out.print("Dia: ");
-                dia = s.nextInt();
-                if (dia > cantDiasMes(mes, anio)){
-                    System.out.println("Ingrese un dia valido para el mes y anio ingresados.");
-                } else
-                    break;
-            }
+        }
+        LocalDate fechaActual = LocalDate.now();
+        System.out.print("Fecha de nacimiento");
+        int mes, anio, dia;
+        while (true){
+            System.out.print("Anio: ");
+            anio = s.nextInt();
+            s.nextLine();
+            if (anio < fechaActual.getYear()-300){
+                System.out.println("El personaje no puede tener mas de 300 anios.");
+                System.out.println("Ingrese un anio mayor.");
+            } else
+                break;
+        }
+        while (true){
+            System.out.print("Mes (1-12): ");
+            mes = s.nextInt();
+            s.nextLine();
+            if (mes > 12){
+                System.out.println("Ingrese un mes valido (<12).");
+            } else
+                break;
+        }
+        while (true){
+            System.out.print("Dia: ");
+            dia = s.nextInt();
+            s.nextLine();
+            if (dia > cantDiasMes(mes, anio)){
+                System.out.println("Ingrese un dia valido para el mes y anio ingresados.");
+            } else
+                break;
+        }
             
-            LocalDate nacimiento = LocalDate.of(anio, mes, dia);
+        LocalDate nacimiento = LocalDate.of(anio, mes, dia);
             
-            int velocidad = validarInt(1, 10,"Velocidad (1-10): ");
-            int destreza = validarInt(1, 5,"Destreza (1-5): ");
-            int fuerza = validarInt(1, 10,"Fuerza (1-10): ");
-            int nivel = validarInt(1, 10,"Nivel (1-10): ");
-            int armadura = validarInt(1, 10,"Armadura (1-10): ");
+        int velocidad = validarInt(1, 10,"Velocidad (1-10): ");
+        int destreza = validarInt(1, 5,"Destreza (1-5): ");
+        int fuerza = validarInt(1, 10,"Fuerza (1-10): ");
+        int nivel = validarInt(1, 10,"Nivel (1-10): ");
+        int armadura = validarInt(1, 10,"Armadura (1-10): ");
 
-            Personaje p = new Personaje(nombre, raza, apodo, nacimiento, velocidad, destreza, fuerza, nivel, armadura);
-            return p;
+        Personaje p = new Personaje(nombre, raza, apodo, nacimiento, velocidad, destreza, fuerza, nivel, armadura);
+        return p;
     }
 
     public void mostrarMenu(){
-        boolean salir = false;
-
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("-                                                            -");
-        System.out.println("-                       JUEGO DE CARTAS                      -");
-        System.out.println("-                                                            -");
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("------------------ Menú del Juego de Cartas ------------------");
-        System.out.println("-  1. Iniciar partida (generar personajes aleatoriamente)    -");
-        System.out.println("-  2. Iniciar partida (ingresar personajes a mano)           -");
-        System.out.println("-  3. Leer logs de partidas jugadas                          -");
-        System.out.println("-  4. Borrar archivo de logs                                 -");
-        System.out.println("-  5. Salir                                                  -");
-        System.out.println("--------------------------------------------------------------");
-        System.out.print  ("Ingrese la opción deseada: ");
-        while (!salir){
-            int opcion = s.nextInt();
+        while (continuarJugando) {
+            System.out.println("--------------------------------------------------------------");
+            System.out.println("-                                                            -");
+            System.out.println("-                       JUEGO DE CARTAS                      -");
+            System.out.println("-                                                            -");
+            System.out.println("--------------------------------------------------------------");
+            System.out.println("------------------ Menú del Juego de Cartas ------------------");
+            System.out.println("-  1. Iniciar partida (generar personajes aleatoriamente)    -");
+            System.out.println("-  2. Iniciar partida (ingresar personajes a mano)           -");
+            System.out.println("-  3. Leer logs de partidas jugadas                          -");
+            System.out.println("-  4. Borrar archivo de logs                                 -");
+            System.out.println("-  5. Salir                                                  -");
+            System.out.println("--------------------------------------------------------------");
+            System.out.print  ("Ingrese la opción deseada: ");
+            int opcion;
+            try {
+                opcion = Integer.parseInt(s.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Ingrese un número válido.");
+                continue;
+            }
 
             switch (opcion) {
                 case 1:
@@ -194,66 +238,107 @@ public class Juego {
                     borrarArchivoLogs();
                     break;
                 case 5:
-                    System.exit(0);
+                    salir();
+                    break;
                 default:
-                    salir = true;
+                    System.out.println("Opción inválida. Por favor, ingrese un número del 1 al 5.");
             }
         }
-
-        guardarLogsEnArchivo();
     }
 
     public void iniciarPartida() {
+        //Guarda los personajes en variables
+        Personaje J1P1 = Jugador1.get(0);
+        Personaje J1P2 = Jugador1.get(1);
+        Personaje J1P3 = Jugador1.get(2);
+        Personaje J2P1 = Jugador2.get(0);
+        Personaje J2P2 = Jugador2.get(1);
+        Personaje J2P3 = Jugador2.get(2);
+        
+
+        //Presenta las cartas de cada uno
         System.out.println("Los personajes asignados para cada jugador son:");
         System.out.println("JUGADOR 1");
-        System.out.println(Jugador1.get(0).toString());
-        System.out.println(Jugador1.get(1).toString());
-        System.out.println(Jugador1.get(2).toString());
+        System.out.println(J1P1.toString());
+        System.out.println(J1P2.toString());
+        System.out.println(J1P3.toString());
         System.out.println("JUGADOR 2");
-        System.out.println(Jugador2.get(0).toString());
-        System.out.println(Jugador2.get(1).toString());
-        System.out.println(Jugador2.get(2).toString());
+        System.out.println(J2P1.toString());
+        System.out.println(J2P2.toString());
+        System.out.println(J2P3.toString());
 
         System.out.println("");
         System.out.println("////////////////////////////////////////////////");
         System.out.println("");
 
-        enfrentamiento();
+        //Guarda el ganador para luego mostrarlo en el log
+        String ganador = enfrentamiento();
+
+        String resultadoPartida = "Partida jugada - " + LocalDate.now();
+        resultadoPartida += "\nGanador: " + ganador;
+        resultadoPartida += "\nCartas de Jugador 1:";
+        resultadoPartida += "\n " + J1P1.toString();
+        resultadoPartida += "\n " + J1P2.toString();
+        resultadoPartida += "\n " + J1P3.toString();
+        resultadoPartida += "\nCartas de Jugador 2:";
+        resultadoPartida += "\n " + J2P1.toString();
+        resultadoPartida += "\n " + J2P2.toString();
+        resultadoPartida += "\n " + J2P3.toString();
+        
+        log.add(resultadoPartida);
+
+        // Guardar los registros en el archivo de logs
+        guardarLogsEnArchivo();
+
+        // Preguntar al usuario si desea jugar otra vez
+        System.out.print("¿Desea jugar otra partida? (s/n): ");
+        String respuesta = s.nextLine();
+        if (!respuesta.equalsIgnoreCase("s")) {
+            continuarJugando = false;
+        } else {
+            Jugador1.clear();
+            Jugador2.clear();
+            nombresUtilizados.clear();
+            apodosUtilizados.clear();
+        }
     }
 
-    public void enfrentamiento(){
-        int atacaPrimero = numAleatorio(1,2);
-        int sorteo1, sorteo2;
-
-        sorteo1 = numAleatorio(0,2);
-        sorteo2 = numAleatorio(0,2);
-        Personaje J1 = Jugador1.get(sorteo1);
-        Personaje J2 = Jugador2.get(sorteo2);
-
-        System.out.println("El sistema sorteó al Jugador "+ atacaPrimero +" para iniciar la ronda");
-        System.out.println("El sistema eligió al personaje " + J1.getNombre() + " del jugador 1 y al personaje "+J2.getNombre()+" de jugador 2 para que se enfrenten en esta ronda.");
-        
+    public String enfrentamiento(){
         int ronda = 1;
         boolean seguirCombatiendo = true;
+        String ganador = "";
 
-        Personaje atacante;
-        Personaje defensor;
-
-        if (atacaPrimero == 1){
-            atacante = J1;
-            defensor = J2;
-        } else {
-            atacante = J2;
-            defensor = J1;
-        }
-
+        //Bucle dentro de otro para manejar enfrentamientos y rondas
         while (seguirCombatiendo) {
-            System.out.println("Ronda " + ronda);
+            int atacaPrimero = numAleatorio(1,2);
+            int sorteo1, sorteo2;
+
+            sorteo1 = numAleatorio(0,Jugador1.size()-1);
+            sorteo2 = numAleatorio(0,Jugador2.size()-1);
+            Personaje J1 = Jugador1.get(sorteo1);
+            Personaje J2 = Jugador2.get(sorteo2);
+
+            System.out.println("El sistema sorteó al Jugador "+ atacaPrimero +" para iniciar la ronda");
+            System.out.println("El sistema eligió al personaje " + J1.getNombre() + " del jugador 1 y al personaje "+J2.getNombre()+" de jugador 2 para que se enfrenten en esta ronda.");
+        
+            Personaje atacante;
+            Personaje defensor;
+
+            if (atacaPrimero == 1){
+                atacante = J1;
+                defensor = J2;
+            } else {
+                atacante = J2;
+                defensor = J1;
+            }
+            System.out.println("---------------------------------------------------");
+            System.out.println("                  Ronda " + ronda);
+            System.out.println("---------------------------------------------------");
             for(int i=0; i<14; i++){
                 System.out.println("Atacante: " + atacante.getNombre());
                 System.out.println("Defensor: " + defensor.getNombre());
 
-                double danio = ataque(atacante, defensor);
+                int danio = ataque(atacante, defensor);
                 
                 System.out.println(atacante.getNombre()+" ataca a "+defensor.getNombre()+" y le quita "+ danio+" de salud. "+
                                    defensor.getNombre()+" queda con "+defensor.getSalud()+" de salud.");
@@ -261,9 +346,9 @@ public class Juego {
                 if (defensor.getSalud() == 0){
                     System.out.println("");
                     System.out.println("Muere "+defensor.getNombre()+".");
-                    double salud = atacante.getSalud() + 10;
+                    int salud = atacante.getSalud() + 10;
                     atacante.setSalud(salud);
-                    System.out.println(atacante.getNombre()+" gana 10 de salud como premio, quedando con "+salud+" de salud.");
+                    System.out.println(atacante.getNombre()+" gana 10 de salud como premio, quedando con "+salud+" de salud.\n");
                     if (atacante == J1){
                         Jugador2.remove(defensor);
                     } else {
@@ -271,21 +356,27 @@ public class Juego {
                     }
                     break;
                 }
-                swap(atacante,defensor);
+                //Se intercambian el atacante y el defensor
+                Personaje aux = atacante;
+                atacante = defensor;
+                defensor = aux;
             }
             ronda++;
 
-            String ganador, perdedor;
+            String perdedor;
             List<Personaje> ganadores;
 
+            //Guardar cartas del ganador
             if (Jugador1.size()==0){
                 ganador = "Jugador 2";
                 perdedor = "Jugador 1";
                 ganadores = Jugador2;
+                seguirCombatiendo = false;
             }  else if (Jugador2.size()==0){
                 ganador = "Jugador 1";
                 perdedor = "Jugador 2";
                 ganadores = Jugador1;
+                seguirCombatiendo = false;
             } else continue;
 
             System.out.println("El "+perdedor+" ha perdido todas sus cartas.");
@@ -294,30 +385,33 @@ public class Juego {
             System.out.println("Felicitaciones "+ganador+", las fuerzas mágicas del universo luz te abrazan!");
             System.out.println("Fin.");
         }
-        
+        return ganador;
     }
 
-    public double ataque(Personaje atacante, Personaje defensor){
+    public int ataque(Personaje atacante, Personaje defensor){
         int PD = atacante.getDestreza() * atacante.getFuerza() * atacante.getNivel();
         int ED = numAleatorio(1,100);
-        System.out.println(ED);
-        double VA = (PD * ED)/100;
+        //System.out.println(ED);
+        DecimalFormat df = new DecimalFormat("#");
+        int VA = Integer.parseInt(df.format((PD * ED)/100));
         int PDEF = defensor.getVelocidad() * defensor.getArmadura();
 
-        double danio = 0;
+        //Logica calculo del ataque truncando decimales
+        int danio = 0;
         switch(atacante.getRaza()){
             case Raza.HUMANO:
-                danio = (((VA*ED)-PDEF)/500)*5;
+                danio = Integer.parseInt(df.format((((VA*ED)-PDEF)/500)*5));
                 break;
             case Raza.ORCO:
-                danio = ((((VA*ED)-PDEF)/500)*5 ) * 1.1;
+                danio = Integer.parseInt(df.format(((((VA*ED)-PDEF)/500)*5 ) * 1.1));
                 break;
             case Raza.ELFO:
-                danio = ((((VA*ED)-PDEF)/500)*5 ) * 1.05;
+                danio = Integer.parseInt(df.format(((((VA*ED)-PDEF)/500)*5 ) * 1.05));
                 break;
         }
 
-        double salud = defensor.getSalud();
+        //Resta el danio en la salud
+        int salud = defensor.getSalud();
         if (salud>danio){
             salud = salud-danio;
         } else {
@@ -328,18 +422,31 @@ public class Juego {
         return danio;
     }
 
-    public void swap(Personaje A, Personaje B){
-        Personaje aux = A;
-        A = B;
-        B = aux;
+    private void salir() {
+        System.out.println("¡Gracias por jugar! ¡Hasta luego!");
+        continuarJugando = false;
     }
 
     public void leerLogs() {
-        // Lógica para leer los logs de todas las partidas jugadas desde un archivo
+        try (BufferedReader reader = new BufferedReader(new FileReader("logs.txt"))) {
+            String line;
+            System.out.println("Registros de partidas jugadas:");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo de logs.");
+        }
     }
 
     public void borrarArchivoLogs() {
-        // Lógica para borrar el archivo de logs
+        File archivo = new File("logs.txt");
+        if (archivo.exists()) {
+            archivo.delete();
+            System.out.println("El archivo de logs ha sido eliminado.");
+        } else {
+            System.out.println("El archivo de logs no existe.");
+        }
     }
 
     public void guardarLogsEnArchivo() {
@@ -360,6 +467,7 @@ public class Juego {
     }
 
     public int cantDiasMes(int mes, int anio){
+        //Devuelve la cantidad de dias que puede tener el mes considerando si el anio es bisciesto
         int cant = 0;
         switch (mes){
             case 1:
@@ -393,10 +501,12 @@ public class Juego {
     }
 
     public int validarInt(int min, int max, String mensajeIngresar){
+        //Comprueba que el int ingresado se encuentre entre los valores min y max
         int valor;
         while (true){
             System.out.println(mensajeIngresar);
             valor = s.nextInt();
+            s.nextLine();
             if (!(valor>=min && valor<=max))
                 System.out.println("No es un valor valido, intente de nuevo.");
             else

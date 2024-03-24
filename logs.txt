@@ -1,0 +1,176 @@
+Partida jugada - 2024-03-24
+Ganador: Jugador 1
+Cartas de Jugador 1:
+ 
+-------------------------------
+   Personaje: María
+   Raza: HUMANO
+   Apodo: Daddy
+   Nacimiento: 1942-05-01
+   Edad: 81
+   velocidad: 2
+   destreza: 5
+   fuerza: 2
+   nivel: 6
+   armadura: 9
+   Salud: 36
+-------------------------------
+ 
+-------------------------------
+   Personaje: Horacio
+   Raza: ORCO
+   Apodo: Lucky
+   Nacimiento: 1729-09-10
+   Edad: 294
+   velocidad: 6
+   destreza: 2
+   fuerza: 4
+   nivel: 3
+   armadura: 8
+   Salud: 85
+-------------------------------
+ 
+-------------------------------
+   Personaje: Lucas
+   Raza: HUMANO
+   Apodo: Mad
+   Nacimiento: 1982-03-17
+   Edad: 42
+   velocidad: 6
+   destreza: 5
+   fuerza: 9
+   nivel: 10
+   armadura: 1
+   Salud: 110
+-------------------------------
+Cartas de Jugador 2:
+ 
+-------------------------------
+   Personaje: Fernando
+   Raza: ELFO
+   Apodo: Twinkle
+   Nacimiento: 1912-11-28
+   Edad: 111
+   velocidad: 5
+   destreza: 4
+   fuerza: 9
+   nivel: 1
+   armadura: 2
+   Salud: 0
+-------------------------------
+ 
+-------------------------------
+   Personaje: Carolina
+   Raza: ORCO
+   Apodo: Mac
+   Nacimiento: 2022-07-17
+   Edad: 1
+   velocidad: 3
+   destreza: 1
+   fuerza: 8
+   nivel: 1
+   armadura: 5
+   Salud: 0
+-------------------------------
+ 
+-------------------------------
+   Personaje: Juan
+   Raza: ELFO
+   Apodo: Babe
+   Nacimiento: 2016-07-05
+   Edad: 7
+   velocidad: 10
+   destreza: 3
+   fuerza: 3
+   nivel: 1
+   armadura: 3
+   Salud: 0
+-------------------------------
+Partida jugada - 2024-03-24
+Ganador: Jugador 2
+Cartas de Jugador 1:
+ 
+-------------------------------
+   Personaje: Juan
+   Raza: ELFO
+   Apodo: Twinkle
+   Nacimiento: 1912-09-28
+   Edad: 111
+   velocidad: 3
+   destreza: 2
+   fuerza: 1
+   nivel: 1
+   armadura: 1
+   Salud: 0
+-------------------------------
+ 
+-------------------------------
+   Personaje: María
+   Raza: ELFO
+   Apodo: Mad
+   Nacimiento: 1827-09-30
+   Edad: 196
+   velocidad: 6
+   destreza: 3
+   fuerza: 5
+   nivel: 10
+   armadura: 2
+   Salud: 0
+-------------------------------
+ 
+-------------------------------
+   Personaje: Delfina
+   Raza: ORCO
+   Apodo: Mac
+   Nacimiento: 1912-03-19
+   Edad: 112
+   velocidad: 1
+   destreza: 5
+   fuerza: 9
+   nivel: 4
+   armadura: 7
+   Salud: 0
+-------------------------------
+Cartas de Jugador 2:
+ 
+-------------------------------
+   Personaje: Carolina
+   Raza: ELFO
+   Apodo: Babe
+   Nacimiento: 1735-05-25
+   Edad: 288
+   velocidad: 2
+   destreza: 1
+   fuerza: 6
+   nivel: 1
+   armadura: 4
+   Salud: 0
+-------------------------------
+ 
+-------------------------------
+   Personaje: Horacio
+   Raza: ORCO
+   Apodo: Butterfly
+   Nacimiento: 1989-01-14
+   Edad: 35
+   velocidad: 3
+   destreza: 4
+   fuerza: 8
+   nivel: 10
+   armadura: 5
+   Salud: 120
+-------------------------------
+ 
+-------------------------------
+   Personaje: Fernando
+   Raza: HUMANO
+   Apodo: Bones
+   Nacimiento: 1976-03-10
+   Edad: 48
+   velocidad: 1
+   destreza: 5
+   fuerza: 4
+   nivel: 6
+   armadura: 10
+   Salud: 100
+-------------------------------

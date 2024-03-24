@@ -13,7 +13,7 @@ class Personaje {
     private int fuerza;
     private int nivel;
     private int armadura;
-    private double salud;
+    private int salud;
 
     public Personaje(String nombre, Raza raza, String apodo, LocalDate nacimiento, int velocidad, int destreza, int fuerza, int nivel, int armadura) {
         this.nombre = nombre;
@@ -51,12 +51,12 @@ class Personaje {
     public int getArmadura(){
         return armadura;
     }
-    public double getSalud(){
+    public int getSalud(){
         return salud;
     }
     
     //Setter
-    public void setSalud(double s){
+    public void setSalud(int s){
         salud = s;
     }
 
@@ -64,28 +64,20 @@ class Personaje {
         return salud > 0;
     }
 
-    /* 
-    @Override
-    public String toString() {
-        return "Personaje: " + nombre +
-                ", Raza: " + raza +
-                ", Apodo: " + apodo +
-                ", Salud: " + salud;
-    }
-    */
-
     @Override
     public String toString(){
-        return "Personaje: " + nombre +
-                ", Raza: " + raza +
-                ", Apodo: " + apodo +
-                ", Nacimiento: " + nacimiento +
-                ", Edad: " + edad +
-                ", velocidad: " + velocidad +
-                ", destreza: " + destreza +
-                ", fuerza: " + fuerza +
-                ", nivel: " + nivel +
-                ", armadura: " + armadura +
-                ", Salud: " + salud;
+        return "\n-------------------------------"+
+               "\n   Personaje: " + nombre +
+               "\n   Raza: " + raza +
+               "\n   Apodo: " + apodo +
+               "\n   Nacimiento: " + nacimiento +
+               "\n   Edad: " + edad +
+               "\n   velocidad: " + velocidad +
+               "\n   destreza: " + destreza +
+               "\n   fuerza: " + fuerza +
+               "\n   nivel: " + nivel +
+               "\n   armadura: " + armadura +
+               "\n   Salud: " + salud +
+               "\n-------------------------------";
     }
 }
