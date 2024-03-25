@@ -1,3 +1,5 @@
+package src;
+
 import java.io.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -116,7 +118,7 @@ public class Juego {
         //Para que no se repitan nombres ni apodos
         String nombre;
         do {
-            System.out.print("Nombre: ");
+            System.out.print("src.Nombre: ");
             nombre = s.nextLine();
             if (nombresUtilizados.contains(nombre)) {
                 System.out.println("¡Este nombre ya ha sido utilizado! Por favor, ingrese otro.");
@@ -126,7 +128,7 @@ public class Juego {
 
         String apodo;
         do {
-            System.out.print("Apodo: ");
+            System.out.print("src.Apodo: ");
             apodo = s.nextLine();
             if (apodosUtilizados.contains(apodo)) {
                 System.out.println("¡Este apodo ya ha sido utilizado! Por favor, ingrese otro.");
@@ -137,7 +139,7 @@ public class Juego {
         boolean salir = false;
         Raza raza = Raza.HUMANO;
         while(!salir){
-            System.out.print("Raza (Humano (H), Orco (O), Elfo (E)): ");
+            System.out.print("src.Raza (Humano (H), Orco (O), Elfo (E)): ");
             String razaInput = s.nextLine();
                 
             switch(razaInput.toUpperCase()){
@@ -206,7 +208,7 @@ public class Juego {
             System.out.println("-                       JUEGO DE CARTAS                      -");
             System.out.println("-                                                            -");
             System.out.println("--------------------------------------------------------------");
-            System.out.println("------------------ Menú del Juego de Cartas ------------------");
+            System.out.println("------------------ Menú del src.Juego de Cartas ------------------");
             System.out.println("-  1. Iniciar partida (generar personajes aleatoriamente)    -");
             System.out.println("-  2. Iniciar partida (ingresar personajes a mano)           -");
             System.out.println("-  3. Leer logs de partidas jugadas                          -");

@@ -1,3 +1,5 @@
+package src;
+
 import java.util.Random;
 
 public class RandomEnumGenerator<T extends Enum<T>> {

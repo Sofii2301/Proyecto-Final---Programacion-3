@@ -1,3 +1,5 @@
+package src;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -67,9 +69,9 @@ class Personaje {
     @Override
     public String toString(){
         return "\n-------------------------------"+
-               "\n   Personaje: " + nombre +
-               "\n   Raza: " + raza +
-               "\n   Apodo: " + apodo +
+               "\n   src.Personaje: " + nombre +
+               "\n   src.Raza: " + raza +
+               "\n   src.Apodo: " + apodo +
                "\n   Nacimiento: " + nacimiento +
                "\n   Edad: " + edad +
                "\n   velocidad: " + velocidad +
