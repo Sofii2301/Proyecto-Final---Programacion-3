@@ -10,6 +10,8 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+
+
 public class Juego {
 
     private List<Personaje> Jugador1;
@@ -118,7 +120,7 @@ public class Juego {
         //Para que no se repitan nombres ni apodos
         String nombre;
         do {
-            System.out.print("src.Nombre: ");
+            System.out.print("Nombre: ");
             nombre = s.nextLine();
             if (nombresUtilizados.contains(nombre)) {
                 System.out.println("¡Este nombre ya ha sido utilizado! Por favor, ingrese otro.");
@@ -128,7 +130,7 @@ public class Juego {
 
         String apodo;
         do {
-            System.out.print("src.Apodo: ");
+            System.out.print("Apodo: ");
             apodo = s.nextLine();
             if (apodosUtilizados.contains(apodo)) {
                 System.out.println("¡Este apodo ya ha sido utilizado! Por favor, ingrese otro.");
@@ -139,7 +141,7 @@ public class Juego {
         boolean salir = false;
         Raza raza = Raza.HUMANO;
         while(!salir){
-            System.out.print("src.Raza (Humano (H), Orco (O), Elfo (E)): ");
+            System.out.print("Raza (Humano (H), Orco (O), Elfo (E)): ");
             String razaInput = s.nextLine();
                 
             switch(razaInput.toUpperCase()){
@@ -161,7 +163,7 @@ public class Juego {
         System.out.print("Fecha de nacimiento");
         int mes, anio, dia;
         while (true){
-            System.out.print("Anio: ");
+            System.out.print("\nAnio: ");
             anio = s.nextInt();
             s.nextLine();
             if (anio < fechaActual.getYear()-300){
@@ -171,7 +173,7 @@ public class Juego {
                 break;
         }
         while (true){
-            System.out.print("Mes (1-12): ");
+            System.out.print("\nMes (1-12): ");
             mes = s.nextInt();
             s.nextLine();
             if (mes > 12){
@@ -180,7 +182,7 @@ public class Juego {
                 break;
         }
         while (true){
-            System.out.print("Dia: ");
+            System.out.print("\nDia: ");
             dia = s.nextInt();
             s.nextLine();
             if (dia > cantDiasMes(mes, anio)){
@@ -401,15 +403,17 @@ public class Juego {
         //Logica calculo del ataque truncando decimales
         int danio = 0;
         switch(atacante.getRaza()){
-            case Raza.HUMANO:
+            case HUMANO:
                 danio = Integer.parseInt(df.format((((VA*ED)-PDEF)/500)*5));
                 break;
-            case Raza.ORCO:
+            case ORCO:
                 danio = Integer.parseInt(df.format(((((VA*ED)-PDEF)/500)*5 ) * 1.1));
                 break;
-            case Raza.ELFO:
+            case ELFO:
                 danio = Integer.parseInt(df.format(((((VA*ED)-PDEF)/500)*5 ) * 1.05));
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + atacante.getRaza());
         }
 
         //Resta el danio en la salud

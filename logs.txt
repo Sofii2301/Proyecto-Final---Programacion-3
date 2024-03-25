@@ -1,176 +1,88 @@
-Partida jugada - 2024-03-24
-Ganador: Jugador 1
-Cartas de Jugador 1:
- 
--------------------------------
-   src.Personaje: María
-   src.Raza: HUMANO
-   src.Apodo: Daddy
-   Nacimiento: 1942-05-01
-   Edad: 81
-   velocidad: 2
-   destreza: 5
-   fuerza: 2
-   nivel: 6
-   armadura: 9
-   Salud: 36
--------------------------------
- 
--------------------------------
-   src.Personaje: Horacio
-   src.Raza: ORCO
-   src.Apodo: Lucky
-   Nacimiento: 1729-09-10
-   Edad: 294
-   velocidad: 6
-   destreza: 2
-   fuerza: 4
-   nivel: 3
-   armadura: 8
-   Salud: 85
--------------------------------
- 
--------------------------------
-   src.Personaje: Lucas
-   src.Raza: HUMANO
-   src.Apodo: Mad
-   Nacimiento: 1982-03-17
-   Edad: 42
-   velocidad: 6
-   destreza: 5
-   fuerza: 9
-   nivel: 10
-   armadura: 1
-   Salud: 110
--------------------------------
-Cartas de Jugador 2:
- 
--------------------------------
-   src.Personaje: Fernando
-   src.Raza: ELFO
-   src.Apodo: Twinkle
-   Nacimiento: 1912-11-28
-   Edad: 111
-   velocidad: 5
-   destreza: 4
-   fuerza: 9
-   nivel: 1
-   armadura: 2
-   Salud: 0
--------------------------------
- 
--------------------------------
-   src.Personaje: Carolina
-   src.Raza: ORCO
-   src.Apodo: Mac
-   Nacimiento: 2022-07-17
-   Edad: 1
-   velocidad: 3
-   destreza: 1
-   fuerza: 8
-   nivel: 1
-   armadura: 5
-   Salud: 0
--------------------------------
- 
--------------------------------
-   src.Personaje: Juan
-   src.Raza: ELFO
-   src.Apodo: Babe
-   Nacimiento: 2016-07-05
-   Edad: 7
-   velocidad: 10
-   destreza: 3
-   fuerza: 3
-   nivel: 1
-   armadura: 3
-   Salud: 0
--------------------------------
-Partida jugada - 2024-03-24
+Partida jugada - 2024-03-25
 Ganador: Jugador 2
 Cartas de Jugador 1:
  
 -------------------------------
-   src.Personaje: Juan
+   src.Personaje: Carolina
    src.Raza: ELFO
-   src.Apodo: Twinkle
-   Nacimiento: 1912-09-28
-   Edad: 111
-   velocidad: 3
-   destreza: 2
-   fuerza: 1
-   nivel: 1
-   armadura: 1
+   src.Apodo: Babe
+   Nacimiento: 1961-11-28
+   Edad: 62
+   velocidad: 9
+   destreza: 1
+   fuerza: 2
+   nivel: 5
+   armadura: 2
    Salud: 0
 -------------------------------
  
 -------------------------------
-   src.Personaje: María
-   src.Raza: ELFO
+   src.Personaje: Carla
+   src.Raza: HUMANO
    src.Apodo: Mad
-   Nacimiento: 1827-09-30
-   Edad: 196
-   velocidad: 6
-   destreza: 3
-   fuerza: 5
-   nivel: 10
-   armadura: 2
+   Nacimiento: 1884-10-17
+   Edad: 139
+   velocidad: 5
+   destreza: 1
+   fuerza: 7
+   nivel: 1
+   armadura: 9
    Salud: 0
 -------------------------------
  
 -------------------------------
    src.Personaje: Delfina
-   src.Raza: ORCO
-   src.Apodo: Mac
-   Nacimiento: 1912-03-19
-   Edad: 112
-   velocidad: 1
-   destreza: 5
-   fuerza: 9
-   nivel: 4
+   src.Raza: HUMANO
+   src.Apodo: Butterfly
+   Nacimiento: 1772-05-17
+   Edad: 251
+   velocidad: 6
+   destreza: 2
+   fuerza: 3
+   nivel: 7
    armadura: 7
    Salud: 0
 -------------------------------
 Cartas de Jugador 2:
  
 -------------------------------
-   src.Personaje: Carolina
+   src.Personaje: Juan
    src.Raza: ELFO
-   src.Apodo: Babe
-   Nacimiento: 1735-05-25
-   Edad: 288
-   velocidad: 2
-   destreza: 1
-   fuerza: 6
-   nivel: 1
-   armadura: 4
-   Salud: 0
--------------------------------
- 
--------------------------------
-   src.Personaje: Horacio
-   src.Raza: ORCO
-   src.Apodo: Butterfly
-   Nacimiento: 1989-01-14
-   Edad: 35
-   velocidad: 3
-   destreza: 4
-   fuerza: 8
-   nivel: 10
-   armadura: 5
-   Salud: 120
--------------------------------
- 
--------------------------------
-   src.Personaje: Fernando
-   src.Raza: HUMANO
    src.Apodo: Bones
-   Nacimiento: 1976-03-10
-   Edad: 48
-   velocidad: 1
-   destreza: 5
-   fuerza: 4
+   Nacimiento: 1931-09-05
+   Edad: 92
+   velocidad: 9
+   destreza: 1
+   fuerza: 9
    nivel: 6
-   armadura: 10
-   Salud: 100
+   armadura: 1
+   Salud: 105
+-------------------------------
+ 
+-------------------------------
+   src.Personaje: Lucas
+   src.Raza: HUMANO
+   src.Apodo: Twinkle
+   Nacimiento: 1861-11-02
+   Edad: 162
+   velocidad: 7
+   destreza: 3
+   fuerza: 10
+   nivel: 2
+   armadura: 4
+   Salud: 80
+-------------------------------
+ 
+-------------------------------
+   src.Personaje: Josefa
+   src.Raza: ELFO
+   src.Apodo: Lucky
+   Nacimiento: 1928-06-15
+   Edad: 95
+   velocidad: 8
+   destreza: 1
+   fuerza: 4
+   nivel: 4
+   armadura: 5
+   Salud: 65
 -------------------------------
