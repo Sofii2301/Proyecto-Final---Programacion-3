@@ -251,11 +251,7 @@ public class Juego {
         System.out.println("////////////////////////////////////////////////");
         System.out.println("");
 
-        //Guarda el ganador para luego mostrarlo en el log
-        String ganador = enfrentamiento();
-
         String resultadoPartida = "Partida jugada - " + LocalDate.now();
-        resultadoPartida += "\nGanador: " + ganador;
         resultadoPartida += "\nCartas de Jugador 1:";
         resultadoPartida += "\n " + J1P1.toString();
         resultadoPartida += "\n " + J1P2.toString();
@@ -264,8 +260,13 @@ public class Juego {
         resultadoPartida += "\n " + J2P1.toString();
         resultadoPartida += "\n " + J2P2.toString();
         resultadoPartida += "\n " + J2P3.toString();
-        
+
         log.add(resultadoPartida);
+
+        //Guarda el ganador para luego mostrarlo en el log
+        String ganador = enfrentamiento();
+        
+        log.add("\nGanador: " + ganador);
 
         // Guardar los registros en el archivo de logs
         guardarLogsEnArchivo();
@@ -314,21 +315,28 @@ public class Juego {
             System.out.println("---------------------------------------------------");
             System.out.println("                  Ronda " + ronda);
             System.out.println("---------------------------------------------------");
+            log.add("---------------------------------------------------");
+            log.add("                  Ronda " + ronda);
+            log.add("---------------------------------------------------");
             for(int i=0; i<14; i++){
                 System.out.println("Atacante: " + atacante.getNombre());
                 System.out.println("Defensor: " + defensor.getNombre());
+                log.add("Atacante: " + atacante.getNombre());
+                log.add("Defensor: " + defensor.getNombre());
 
                 int danio = ataque(atacante, defensor);
                 
                 System.out.println(atacante.getNombre()+" ataca a "+defensor.getNombre()+" y le quita "+ danio+" de salud. "+
                                    defensor.getNombre()+" queda con "+defensor.getSalud()+" de salud.");
-
+                log.add(atacante.getNombre() + " ataca a " + defensor.getNombre() + " y le quita " + danio + " de salud. " + defensor.getNombre() + " queda con " + defensor.getSalud() + " de salud.");
                 if (defensor.getSalud() == 0){
                     System.out.println("");
                     System.out.println("Muere "+defensor.getNombre()+".");
+                    log.add("Muere " + defensor.getNombre() + ".");
                     int salud = atacante.getSalud() + 10;
                     atacante.setSalud(salud);
                     System.out.println(atacante.getNombre()+" gana 10 de salud como premio, quedando con "+salud+" de salud.\n");
+                    log.add(atacante.getNombre() + " gana 10 de salud como premio, quedando con " + salud + " de salud.\n");
                     if (atacante == J1){
                         Jugador2.remove(defensor);
                     } else {
@@ -364,6 +372,11 @@ public class Juego {
             System.out.println(ganadores);
             System.out.println("Felicitaciones "+ganador+", las fuerzas mágicas del universo luz te abrazan!");
             System.out.println("Fin.");
+            log.add("El " + perdedor + " ha perdido todas sus cartas.");
+            log.add("Gana " + ganador + ", le quedo/aron vivos los sgtes. personajes:");
+            log.add(ganadores.toString());
+            log.add("Felicitaciones " + ganador + ", las fuerzas mágicas del universo luz te abrazan!");
+            log.add("Fin.");
         }
         return ganador;
     }
@@ -418,7 +431,7 @@ public class Juego {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println("Error al leer el archivo de logs.");
+            System.out.println("No hay registros de partidas jugadas.");
         }
     }
 

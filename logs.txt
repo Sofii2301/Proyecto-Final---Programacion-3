@@ -1,88 +1,217 @@
-Partida jugada - 2024-03-25
-Ganador: Jugador 2
+Partida jugada - 2024-05-01
 Cartas de Jugador 1:
  
 -------------------------------
-   src.Personaje: Carolina
-   src.Raza: ELFO
-   src.Apodo: Babe
-   Nacimiento: 1961-11-28
-   Edad: 62
-   velocidad: 9
-   destreza: 1
-   fuerza: 2
-   nivel: 5
-   armadura: 2
-   Salud: 0
+   Personaje: Juan
+   Raza: HUMANO
+   Apodo: Crash
+   Nacimiento: 2003-10-11
+   Edad: 20
+   velocidad: 3
+   destreza: 4
+   fuerza: 4
+   nivel: 7
+   armadura: 6
+   Salud: 100
 -------------------------------
  
 -------------------------------
-   src.Personaje: Carla
-   src.Raza: HUMANO
-   src.Apodo: Mad
-   Nacimiento: 1884-10-17
-   Edad: 139
+   Personaje: Horacio
+   Raza: ORCO
+   Apodo: Butterfly
+   Nacimiento: 1913-04-27
+   Edad: 111
+   velocidad: 2
+   destreza: 2
+   fuerza: 9
+   nivel: 1
+   armadura: 10
+   Salud: 100
+-------------------------------
+ 
+-------------------------------
+   Personaje: Carolina
+   Raza: ELFO
+   Apodo: Twinkle
+   Nacimiento: 1816-11-28
+   Edad: 207
    velocidad: 5
    destreza: 1
-   fuerza: 7
-   nivel: 1
-   armadura: 9
-   Salud: 0
--------------------------------
- 
--------------------------------
-   src.Personaje: Delfina
-   src.Raza: HUMANO
-   src.Apodo: Butterfly
-   Nacimiento: 1772-05-17
-   Edad: 251
-   velocidad: 6
-   destreza: 2
-   fuerza: 3
-   nivel: 7
-   armadura: 7
-   Salud: 0
+   fuerza: 4
+   nivel: 10
+   armadura: 4
+   Salud: 100
 -------------------------------
 Cartas de Jugador 2:
  
 -------------------------------
-   src.Personaje: Juan
-   src.Raza: ELFO
-   src.Apodo: Bones
-   Nacimiento: 1931-09-05
-   Edad: 92
-   velocidad: 9
-   destreza: 1
-   fuerza: 9
-   nivel: 6
-   armadura: 1
-   Salud: 105
--------------------------------
- 
--------------------------------
-   src.Personaje: Lucas
-   src.Raza: HUMANO
-   src.Apodo: Twinkle
-   Nacimiento: 1861-11-02
-   Edad: 162
-   velocidad: 7
+   Personaje: Lucas
+   Raza: ORCO
+   Apodo: Babe
+   Nacimiento: 1869-08-18
+   Edad: 154
+   velocidad: 5
    destreza: 3
-   fuerza: 10
-   nivel: 2
-   armadura: 4
-   Salud: 80
+   fuerza: 8
+   nivel: 5
+   armadura: 3
+   Salud: 100
 -------------------------------
  
 -------------------------------
-   src.Personaje: Josefa
-   src.Raza: ELFO
-   src.Apodo: Lucky
-   Nacimiento: 1928-06-15
-   Edad: 95
-   velocidad: 8
-   destreza: 1
-   fuerza: 4
-   nivel: 4
-   armadura: 5
-   Salud: 65
+   Personaje: Carla
+   Raza: ORCO
+   Apodo: Lucky
+   Nacimiento: 1734-03-06
+   Edad: 290
+   velocidad: 2
+   destreza: 4
+   fuerza: 5
+   nivel: 8
+   armadura: 3
+   Salud: 100
 -------------------------------
+ 
+-------------------------------
+   Personaje: Josefa
+   Raza: HUMANO
+   Apodo: Mac
+   Nacimiento: 1856-08-08
+   Edad: 167
+   velocidad: 7
+   destreza: 4
+   fuerza: 4
+   nivel: 9
+   armadura: 9
+   Salud: 100
+-------------------------------
+---------------------------------------------------
+                  Ronda 1
+---------------------------------------------------
+Atacante: Lucas
+Defensor: Horacio
+Lucas ataca a Horacio y le quita 0 de salud. Horacio queda con 100 de salud.
+Atacante: Horacio
+Defensor: Lucas
+Horacio ataca a Lucas y le quita 6 de salud. Lucas queda con 94 de salud.
+Atacante: Lucas
+Defensor: Horacio
+Lucas ataca a Horacio y le quita 0 de salud. Horacio queda con 100 de salud.
+Atacante: Horacio
+Defensor: Lucas
+Horacio ataca a Lucas y le quita 11 de salud. Lucas queda con 83 de salud.
+Atacante: Lucas
+Defensor: Horacio
+Lucas ataca a Horacio y le quita 0 de salud. Horacio queda con 100 de salud.
+Atacante: Horacio
+Defensor: Lucas
+Horacio ataca a Lucas y le quita 0 de salud. Lucas queda con 83 de salud.
+Atacante: Lucas
+Defensor: Horacio
+Lucas ataca a Horacio y le quita 55 de salud. Horacio queda con 45 de salud.
+Atacante: Horacio
+Defensor: Lucas
+Horacio ataca a Lucas y le quita 0 de salud. Lucas queda con 83 de salud.
+Atacante: Lucas
+Defensor: Horacio
+Lucas ataca a Horacio y le quita 0 de salud. Horacio queda con 45 de salud.
+Atacante: Horacio
+Defensor: Lucas
+Horacio ataca a Lucas y le quita 0 de salud. Lucas queda con 83 de salud.
+Atacante: Lucas
+Defensor: Horacio
+Lucas ataca a Horacio y le quita 61 de salud. Horacio queda con 0 de salud.
+Muere Horacio.
+Lucas gana 10 de salud como premio, quedando con 93 de salud.
+
+---------------------------------------------------
+                  Ronda 2
+---------------------------------------------------
+Atacante: Juan
+Defensor: Lucas
+Juan ataca a Lucas y le quita 0 de salud. Lucas queda con 93 de salud.
+Atacante: Lucas
+Defensor: Juan
+Lucas ataca a Juan y le quita 28 de salud. Juan queda con 72 de salud.
+Atacante: Juan
+Defensor: Lucas
+Juan ataca a Lucas y le quita 0 de salud. Lucas queda con 93 de salud.
+Atacante: Lucas
+Defensor: Juan
+Lucas ataca a Juan y le quita 0 de salud. Juan queda con 72 de salud.
+Atacante: Juan
+Defensor: Lucas
+Juan ataca a Lucas y le quita 20 de salud. Lucas queda con 73 de salud.
+Atacante: Lucas
+Defensor: Juan
+Lucas ataca a Juan y le quita 33 de salud. Juan queda con 39 de salud.
+Atacante: Juan
+Defensor: Lucas
+Juan ataca a Lucas y le quita 0 de salud. Lucas queda con 73 de salud.
+Atacante: Lucas
+Defensor: Juan
+Lucas ataca a Juan y le quita 88 de salud. Juan queda con 0 de salud.
+Muere Juan.
+Lucas gana 10 de salud como premio, quedando con 83 de salud.
+
+---------------------------------------------------
+                  Ronda 3
+---------------------------------------------------
+Atacante: Carla
+Defensor: Carolina
+Carla ataca a Carolina y le quita 11 de salud. Carolina queda con 89 de salud.
+Atacante: Carolina
+Defensor: Carla
+Carolina ataca a Carla y le quita 21 de salud. Carla queda con 79 de salud.
+Atacante: Carla
+Defensor: Carolina
+Carla ataca a Carolina y le quita 132 de salud. Carolina queda con 0 de salud.
+Muere Carolina.
+Carla gana 10 de salud como premio, quedando con 89 de salud.
+
+El Jugador 1 ha perdido todas sus cartas.
+Gana Jugador 2, le quedo/aron vivos los sgtes. personajes:
+[
+-------------------------------
+   Personaje: Lucas
+   Raza: ORCO
+   Apodo: Babe
+   Nacimiento: 1869-08-18
+   Edad: 154
+   velocidad: 5
+   destreza: 3
+   fuerza: 8
+   nivel: 5
+   armadura: 3
+   Salud: 83
+-------------------------------, 
+-------------------------------
+   Personaje: Carla
+   Raza: ORCO
+   Apodo: Lucky
+   Nacimiento: 1734-03-06
+   Edad: 290
+   velocidad: 2
+   destreza: 4
+   fuerza: 5
+   nivel: 8
+   armadura: 3
+   Salud: 89
+-------------------------------, 
+-------------------------------
+   Personaje: Josefa
+   Raza: HUMANO
+   Apodo: Mac
+   Nacimiento: 1856-08-08
+   Edad: 167
+   velocidad: 7
+   destreza: 4
+   fuerza: 4
+   nivel: 9
+   armadura: 9
+   Salud: 100
+-------------------------------]
+Felicitaciones Jugador 2, las fuerzas mágicas del universo luz te abrazan!
+Fin.
+
+Ganador: Jugador 2
