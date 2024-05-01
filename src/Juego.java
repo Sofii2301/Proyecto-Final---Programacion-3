@@ -10,8 +10,6 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-
-
 public class Juego {
 
     private List<Personaje> Jugador1;
@@ -141,57 +139,32 @@ public class Juego {
         boolean salir = false;
         Raza raza = Raza.HUMANO;
         while(!salir){
-            System.out.print("Raza (Humano (H), Orco (O), Elfo (E)): ");
-            String razaInput = s.nextLine();
-                
-            switch(razaInput.toUpperCase()){
-                case "H":
-                    raza = Raza.HUMANO;
-                    salir = true;
-                    break;
-                case "O":
-                    raza = Raza.ORCO;
-                    salir = true;
-                    break;
-                case "E":
-                    raza = Raza.ELFO;
-                    salir = true;
-                    break;
+            try {
+                System.out.print("Raza (Humano (H), Orco (O), Elfo (E)): ");
+                String razaInput = s.nextLine();
+                    
+                switch(razaInput.toUpperCase()){
+                    case "H":
+                        raza = Raza.HUMANO;
+                        salir = true;
+                        break;
+                    case "O":
+                        raza = Raza.ORCO;
+                        salir = true;
+                        break;
+                    case "E":
+                        raza = Raza.ELFO;
+                        salir = true;
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Opción inválida. Por favor, ingrese una letra (Raza) válida ( H - O - E ).");
+                };
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
-        LocalDate fechaActual = LocalDate.now();
-        System.out.print("Fecha de nacimiento");
-        int mes, anio, dia;
-        while (true){
-            System.out.print("\nAnio: ");
-            anio = s.nextInt();
-            s.nextLine();
-            if (anio < fechaActual.getYear()-300){
-                System.out.println("El personaje no puede tener mas de 300 anios.");
-                System.out.println("Ingrese un anio mayor.");
-            } else
-                break;
-        }
-        while (true){
-            System.out.print("\nMes (1-12): ");
-            mes = s.nextInt();
-            s.nextLine();
-            if (mes > 12){
-                System.out.println("Ingrese un mes valido (<12).");
-            } else
-                break;
-        }
-        while (true){
-            System.out.print("\nDia: ");
-            dia = s.nextInt();
-            s.nextLine();
-            if (dia > cantDiasMes(mes, anio)){
-                System.out.println("Ingrese un dia valido para el mes y anio ingresados.");
-            } else
-                break;
-        }
             
-        LocalDate nacimiento = LocalDate.of(anio, mes, dia);
+        LocalDate nacimiento = leerFechaNacimiento();
             
         int velocidad = validarInt(1, 10,"Velocidad (1-10): ");
         int destreza = validarInt(1, 5,"Destreza (1-5): ");
@@ -210,7 +183,7 @@ public class Juego {
             System.out.println("-                       JUEGO DE CARTAS                      -");
             System.out.println("-                                                            -");
             System.out.println("--------------------------------------------------------------");
-            System.out.println("------------------ Menú del src.Juego de Cartas ------------------");
+            System.out.println("------------------ Menú del Juego de Cartas ------------------");
             System.out.println("-  1. Iniciar partida (generar personajes aleatoriamente)    -");
             System.out.println("-  2. Iniciar partida (ingresar personajes a mano)           -");
             System.out.println("-  3. Leer logs de partidas jugadas                          -");
@@ -251,6 +224,10 @@ public class Juego {
     }
 
     public void iniciarPartida() {
+        if (Jugador1.isEmpty() || Jugador2.isEmpty()) {
+            System.out.println("No hay suficientes personajes asignados para iniciar la partida.");
+            return;
+        }
         //Guarda los personajes en variables
         Personaje J1P1 = Jugador1.get(0);
         Personaje J1P2 = Jugador1.get(1);
@@ -258,15 +235,14 @@ public class Juego {
         Personaje J2P1 = Jugador2.get(0);
         Personaje J2P2 = Jugador2.get(1);
         Personaje J2P3 = Jugador2.get(2);
-        
 
         //Presenta las cartas de cada uno
-        System.out.println("Los personajes asignados para cada jugador son:");
-        System.out.println("JUGADOR 1");
+        System.out.println("\nLos personajes asignados para cada jugador son:");
+        System.out.println("\nJUGADOR 1");
         System.out.println(J1P1.toString());
         System.out.println(J1P2.toString());
         System.out.println(J1P3.toString());
-        System.out.println("JUGADOR 2");
+        System.out.println("\nJUGADOR 2");
         System.out.println(J2P1.toString());
         System.out.println(J2P2.toString());
         System.out.println(J2P3.toString());
@@ -295,10 +271,10 @@ public class Juego {
         guardarLogsEnArchivo();
 
         // Preguntar al usuario si desea jugar otra vez
-        System.out.print("¿Desea jugar otra partida? (s/n): ");
+        System.out.print("¿Desea jugar otra partida? (s): ");
         String respuesta = s.nextLine();
         if (!respuesta.equalsIgnoreCase("s")) {
-            continuarJugando = false;
+            salir();
         } else {
             Jugador1.clear();
             Jugador2.clear();
@@ -431,6 +407,7 @@ public class Juego {
     private void salir() {
         System.out.println("¡Gracias por jugar! ¡Hasta luego!");
         continuarJugando = false;
+        System.exit(0);
     }
 
     public void leerLogs() {
@@ -466,6 +443,50 @@ public class Juego {
             System.out.println("Ocurrió un error al guardar los logs en el archivo.");
         }
     }
+
+    private LocalDate leerFechaNacimiento() {
+        while (true) {
+            try {
+                System.out.print("Fecha de nacimiento (AAAA-MM-DD): ");
+                String fechaStr = s.nextLine();
+                String[] fechaParts = fechaStr.split("-");
+                if (fechaParts.length != 3) {
+                    throw new IllegalArgumentException("Formato de fecha incorrecto. Ingrese la fecha nuevamente.");
+                }
+                int anio = Integer.parseInt(fechaParts[0]);
+                int mes = Integer.parseInt(fechaParts[1]);
+                int dia = Integer.parseInt(fechaParts[2]);
+                
+                // Validar mes
+                if (mes < 1 || mes > 12) {
+                    throw new IllegalArgumentException("El mes debe estar entre 1 y 12. Ingrese nuevamente.");
+                }
+    
+                // Validar día
+                int maxDias = LocalDate.of(anio, mes, 1).lengthOfMonth();
+                if (dia < 1 || dia > maxDias) {
+                    throw new IllegalArgumentException("El día ingresado no es válido para el mes y año especificados. Ingrese nuevamente.");
+                }
+                
+                //Validar año
+                LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia);
+                LocalDate fechaLimite = LocalDate.now().minusYears(300);
+    
+                if (fechaNacimiento.isBefore(fechaLimite)) {
+                    throw new IllegalArgumentException("El personaje no puede tener más de 300 años. Ingrese una fecha de nacimiento más reciente.");
+                }
+    
+                return fechaNacimiento;
+            } catch (NumberFormatException e) {
+                System.out.println("Formato de fecha incorrecto. Ingrese la fecha nuevamente.");
+                // Consumir la entrada inválida del usuario
+                s.nextLine();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
 
     public static int numAleatorio(int min, int max) {
         Random random = new Random();
@@ -506,21 +527,21 @@ public class Juego {
         return cant;
     }
 
-    public int validarInt(int min, int max, String mensajeIngresar){
+    public int validarInt(int min, int max, String mensaje) {
         //Comprueba que el int ingresado se encuentre entre los valores min y max
-        int valor;
-        while (true){
-            System.out.println(mensajeIngresar);
-            valor = s.nextInt();
-            s.nextLine();
-            if (!(valor>=min && valor<=max))
-                System.out.println("No es un valor valido, intente de nuevo.");
-            else
+        int numero;
+        while (true) {
+            try {
+                System.out.print(mensaje);
+                numero = Integer.parseInt(s.nextLine());
+                if (numero < min || numero > max) {
+                    throw new IllegalArgumentException("Ingrese un número entero entre " + min + " y " + max + ".");
+                }
                 break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: Ingrese un número entero válido. " + e.getMessage());
+            }
         }
-        return valor;
-    }
-
-    
+        return numero;
+    }  
 }
-

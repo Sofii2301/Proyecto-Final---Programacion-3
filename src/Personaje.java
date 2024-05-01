@@ -69,9 +69,9 @@ class Personaje {
     @Override
     public String toString(){
         return "\n-------------------------------"+
-               "\n   src.Personaje: " + nombre +
-               "\n   src.Raza: " + raza +
-               "\n   src.Apodo: " + apodo +
+               "\n   Personaje: " + nombre +
+               "\n   Raza: " + raza +
+               "\n   Apodo: " + apodo +
                "\n   Nacimiento: " + nacimiento +
                "\n   Edad: " + edad +
                "\n   velocidad: " + velocidad +
